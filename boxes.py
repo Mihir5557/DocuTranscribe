@@ -1,11 +1,12 @@
-import os
-import shutil
-from tqdm import tqdm
-from pdf2image import convert_from_path
-from doctr.io import DocumentFile
-from doctr.models import ocr_predictor
 import json
 import math
+import os
+import shutil
+
+from doctr.io import DocumentFile
+from doctr.models import ocr_predictor
+from pdf2image import convert_from_path
+from tqdm import tqdm
 
 
 class PDFConverter:

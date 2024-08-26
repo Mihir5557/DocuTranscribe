@@ -1,8 +1,9 @@
-from collections import defaultdict
-from paddleocr import PaddleOCR
+import difflib
 import os
 import shutil
-import difflib
+from collections import defaultdict
+
+from paddleocr import PaddleOCR
 
 
 def extract_text_from_image(image_path):
