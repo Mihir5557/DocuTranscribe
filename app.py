@@ -1,24 +1,20 @@
-import google.generativeai as genai
-import socketio
-from queue import Queue
-import requests
-import urllib
-import os
-import PIL.Image
-import json
-import re
-from boxes import OCRExtractor
-from boxes import DataConverter
 import ast
-from functional_update import remove_commas_and_periods
-from functional_update import remove_leading_space
-from functional_update import process_data
-from functional_update import format_data_recipt
-from functional_update import format_data
-from functional_update import add_serial_numbers_to_list
-from functional_update import modify_item_details
-from functional_update import merge_data
-from functional_update import empty_folder
+import json
+import os
+import re
+import urllib
+from queue import Queue
+
+import google.generativeai as genai
+import PIL.Image
+import requests
+import socketio
+
+from boxes import DataConverter, OCRExtractor
+from functional_update import (add_serial_numbers_to_list, empty_folder,
+                               format_data, format_data_recipt, merge_data,
+                               modify_item_details, process_data,
+                               remove_commas_and_periods, remove_leading_space)
 
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 genai.configure(api_key=GOOGLE_API_KEY)

@@ -1,16 +1,7 @@
-from collections import defaultdict
-from paddleocr import PaddleOCR
+import difflib
 import os
 import shutil
-import difflib
-
-
-def extract_text_from_image(image_path):
-    ocr = PaddleOCR(use_gpu=True)
-    results = ocr.ocr(image_path)
-    ocr_text = [resl[1][0] for resl in results[0]]
-    return "\n".join(ocr_text)
-
+from collections import defaultdict
 
 def remove_commas_and_periods(obj):
     if isinstance(obj, dict):
