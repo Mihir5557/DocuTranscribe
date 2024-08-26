@@ -20,7 +20,7 @@ from functional_update import modify_item_details
 from functional_update import merge_data
 from functional_update import empty_folder
 
-GOOGLE_API_KEY='AIzaSyBDBCU7H_kWnfCGhMkwwupVdjtEUfHDxlQ'
+GOOGLE_API_KEY=os.getenv("GOOGLE_API_KEY")
 genai.configure(api_key=GOOGLE_API_KEY)
 
 model = genai.GenerativeModel('models/gemini-1.5-flash-latest')
@@ -56,7 +56,6 @@ def process_single_message():
               if 'error' in result :
                 process_id = result["process_id"]
                 print(f"failed {process_id}")
-                # result1 = result["result"]
                 stat = 'Failed'
                 processed_message = {
                   "process_id": process_id,
@@ -96,13 +95,11 @@ def invoice_details(message):
         input_request_data = input_request.json()
         data = input_request_data[0]
         print(data)
-        # data = json.loads(data)
         process_id = str(data.get("process_id"))
         flow_id = data.get("flow_id")
         print(flow_id)
         print(type(flow_id))
         doc_type = data.get("type")
-        # image_url = data.get("url")
         status = "InProgress"
         initial_message = {
             "process_id": process_id,
@@ -113,7 +110,6 @@ def invoice_details(message):
         requests.post(output_send, json=initial_message)
       file_name = ""
       image_url = data.get("image_url")
-      # process_id = data.get("process_id")
       print(process_id)
       print(image_url)
       new_ip = "https://devdtdemo-image.aspiresoftware.in/"
@@ -241,7 +237,6 @@ def invoice_details(message):
       input_json_1 = ast.literal_eval(input_jso_1)
       #remove commas and periods within the values
       remove_commas_and_periods(input_json_1)
-      # print(input_json_1)
       print(type(input_json_1))
 
       with open('result/LLM/output.txt', 'r') as file:
@@ -272,7 +267,6 @@ def invoice_details(message):
       elif doc_type == 'invoice':
         data_1_replace = format_data(data_1_replace)
       print("formate done")
-      # print(data_1_replace)
       modify_item_details(data_1_replace)
       print(json.dumps(data_1_replace, indent=2))
       with open('result/LLM/output.txt', 'r') as file:
@@ -289,35 +283,17 @@ def invoice_details(message):
       empty_folder("result/ocrs")
       # empty_folder("result/output")
       empty_folder("result/pdf")
-        # print(result)
 
       final = {"result": result, "process_id": process_id, "flow_id": flow_id, "type": doc_type }
       print('done')
-      # print(type(result1))
-      # final = {'result': result1}
 
-      # image_file_path = "result/image/"
-      # print(image_file_path)
-      # image_text = extract_text_from_image(image_file_path)
-      # print(image_text)
-      # print("image text extracted")
-
-      # Get the list of image files in the directory
-
-      # empty_folder("result/image")
-      # empty_folder("result/pdf")
   except SystemExit as system_exit:
       # Handle the SystemExit exception
       error_message = f"SystemExit exception occurred: {system_exit}"
       # return error_message
       print(error_message)
       final = {"error" : str(error_message), "process_id": process_id, "flow_id": flow_id, "type": doc_type}
-      # empty_folder("result/image")
-      # empty_folder("result/ocrs")
-      # empty_folder("result/output")
-      # empty_folder("result/pdf")
-      # return final
-      # logging.error(error_message)
+
 
   except Exception as e:
       final = {"error" : str(e), "process_id": process_id, "flow_id": flow_id, "type": doc_type}
