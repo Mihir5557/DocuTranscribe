@@ -14,7 +14,6 @@ def remove_commas_and_periods(obj):
         for item in obj:
             remove_commas_and_periods(item)
 
-
 def merge_data(data1, data2):
     def replace_values(section1, section2):
         for entry1 in section1:
