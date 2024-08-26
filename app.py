@@ -290,7 +290,6 @@ def invoice_details(message):
   except SystemExit as system_exit:
       # Handle the SystemExit exception
       error_message = f"SystemExit exception occurred: {system_exit}"
-      # return error_message
       print(error_message)
       final = {"error" : str(error_message), "process_id": process_id, "flow_id": flow_id, "type": doc_type}
 

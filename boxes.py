@@ -100,22 +100,3 @@ class DataConverter:
 
             file_id += 1
 
-
-# def main():
-    # Convert pdf to jpg
-    # pdf_converter = PDFConverter()
-    # pdf_converter.convert_to_jpg('demo',
-    #                              'result/image')
-                                 
-    # OCR
-    # ocr_extractor = OCRExtractor('db_resnet50', 'crnn_vgg16_bn', pretrained=True, detect_language=True)
-    # ocr_extractor.extract('result', show_prediction=False)
-    
-    # # Convert to sparrow format
-    # data_converter = DataConverter()
-    # data_converter.convert_to_sparrow_format('result/ocrs',
-    #                                          'result/output')
-
-
-# if __name__ == '__main__':
-#     main()
