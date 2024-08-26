@@ -5,7 +5,6 @@ import os
 import shutil
 import difflib
 
-
 def extract_text_from_image(image_path):
     ocr = PaddleOCR(use_gpu=True)  # Enable GPU support
     results = ocr.ocr(image_path)
