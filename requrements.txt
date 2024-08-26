@@ -1,0 +1,13 @@
+tensorflow==2.15.1
+python-doctr==0.6.0
+rapidfuzz==2.9
+tf2onnx 
+tensorflow_addons
+python-socketio
+google-generativeai
+pdf2image==1.16.2
+paddlepaddle==2.4.2
+paddleocr==2.6.1.3
+torchvision
+torchaudio
+pillow
