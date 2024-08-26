@@ -4,7 +4,7 @@ import os
 import re
 import urllib
 from queue import Queue
-
+from dotenv import load_dotenv
 import google.generativeai as genai
 import PIL.Image
 import requests
@@ -12,10 +12,11 @@ import socketio
 
 from boxes import DataConverter, OCRExtractor
 from functional_update import (add_serial_numbers_to_list, empty_folder,
-                               format_data, format_data_recipt, merge_data,
+                               format_data, format_data_receipt, merge_data,
                                modify_item_details, process_data,
                                remove_commas_and_periods, remove_leading_space)
 
+load_dotenv()
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 genai.configure(api_key=GOOGLE_API_KEY)
 
@@ -281,7 +282,7 @@ def invoice_details(message):
             data_1_replace = file.read()
         data_1_replace = ast.literal_eval(data_1_replace)
         if doc_type == "receipt":
-            data_1_replace = format_data_recipt(data_1_replace)
+            data_1_replace = format_data_receipt(data_1_replace)
         elif doc_type == "invoice":
             data_1_replace = format_data(data_1_replace)
         print("formate done")
@@ -299,7 +300,7 @@ def invoice_details(message):
         # Example usage
         empty_folder("result/image")
         empty_folder("result/ocrs")
-        # empty_folder("result/output")
+        empty_folder("result/output")
         empty_folder("result/pdf")
 
         final = {
