@@ -85,7 +85,6 @@ def format_data_receipt(data):
         'BankDetails': ['PaymentDetails', 'AccountNumber', 'IFSC', 'PaymentMethod'],
         'InvoiceSummary': ['TotalTaxableAmount', 'TotalTaxesAmount', 'SGST', 'CGST', 'IGST', 'FinalTotal']
     }
-
     for item in data:
         label = item['label']
         for section, labels in section_map.items():
@@ -96,7 +95,6 @@ def format_data_receipt(data):
                     formatted_data[section][-1].append(item)
                 else:
                     formatted_data[section].append(item)
-
     return [{key: value} for key, value in dict(formatted_data).items()]
 
 def add_serial_numbers_to_list(data, keys):
@@ -132,7 +130,6 @@ def similarity(a, b):
 def process_data(input_json_1, input_json_2):
     output_json = []
     section_names = list(input_json_2.keys())
-
     for section_name in section_names:
         if section_name != 'ItemDetails':
             for key1, value in input_json_2[section_name].items():
@@ -163,7 +160,6 @@ def process_data(input_json_1, input_json_2):
                         if new_lst:
                             break
                         similarity_threshold -= 0.01
-
                     if new_lst:
                         combined_rect = {
                             "x1": min(item["rect"]["x1"] for item in new_lst),
@@ -177,10 +173,8 @@ def process_data(input_json_1, input_json_2):
                             "value": combined_value,
                             "label": key1
                         })
-
                     for idx in sorted(indices_to_remove, reverse=True):
                         del input_json_1[idx]
-
         else:
             for item2 in input_json_2[section_name]:
                 for key1, value in item2.items():
@@ -211,7 +205,6 @@ def process_data(input_json_1, input_json_2):
                             if new_lst:
                                 break
                             similarity_threshold -= 0.01
-
                         if new_lst:
                             combined_rect = {
                                 "x1": min(item["rect"]["x1"] for item in new_lst),
@@ -225,10 +218,8 @@ def process_data(input_json_1, input_json_2):
                                 "value": combined_value,
                                 "label": key1
                             })
-
                         for idx in sorted(indices_to_remove, reverse=True):
                             del input_json_1[idx]
-
     return output_json
 
 def empty_folder(folder_path):
